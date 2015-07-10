@@ -2,3 +2,8 @@
 # it should include the board
 #  - its lists
 #    - the cards for each list
+json.extract! @board, :title, :id
+
+json.array! @board.lists do |list|
+  json.partial! 'api/lists/list', list: list
+end
