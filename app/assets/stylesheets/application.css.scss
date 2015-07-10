@@ -12,7 +12,37 @@
  *= require jquery-ui
  *= require_tree .
  */
-
+//
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+.boards-list {
+  position: absolute;
+  margin: 10px 30px;
+  width: 100%;
+}
+
+.boards-list-item {
+  width: 25%;
+  display: block;
+  float: left;
+  margin: 20px;
+  padding: 20px;
+  background-color: #0079BF;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.boards-list-item:hover {
+  background-color: darken(#0079BF, 5%);
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}

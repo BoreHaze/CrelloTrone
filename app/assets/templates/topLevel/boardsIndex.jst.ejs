@@ -1,5 +1,5 @@
-<ul class="boards-list group">
+<ul class="boards-list row">
   <% boards.each( function (board) { %>
-    <li class="boards-list-item"><h2><%= board.escape("title") %></h2></li>
+    <li class="boards-list-item col=md-4"><%= board.escape("title") %></li>
   <% }) %>
 </ul>
