@@ -1,4 +1,4 @@
-TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
+TrelloClone.Views.CardShow = Backbone.View.extend({
   template: JST["cards/cardShow"],
   tagName: "li class='card-show'",
 
@@ -8,9 +8,8 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    console.log("in card render");
     this.$el.html(this.template({ card: this.card }));
     return this;
   }
-  
+
 })
