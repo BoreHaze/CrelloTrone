@@ -1,5 +1,5 @@
 <ul class="boards-list row">
   <% boards.each( function (board) { %>
-    <li class="boards-list-item col=md-4"><%= board.escape("title") %></li>
+    <a class="board-link" href="#b/<%=board.id%>" data-id="<%=board.id%>"><li class="boards-list-item col=md-4"><%= board.escape("title") %></li></a>
   <% }) %>
 </ul>
