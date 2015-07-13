@@ -8,25 +8,30 @@ TrelloClone.Views.CardForm = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this.list = options.list;
-    this.card = new TrelloClone.Models.Card({list_id: this.list.id});
+    this.list = options.list
+    this.model = new TrelloClone.Models.Card({list_id: this.list.id});
   },
 
   render: function () {
-    this.$el.html(this.template({ card: this.card }));
+    this.$el.html(this.template({ card: this.model }));
     return this;
   },
 
   submitCard: function (event) {
-    this.card.set("title", $(event.delegateTarget).find(".card-title-text").val());
-    this.card.save({
-      success: function (model) {
-        console.log("In sucess cb");
-        this.list.cards().add(model);
+    this.model.set("title", $(event.delegateTarget).find(".card-title-text").val());
+    this.model.save({}, {
+      success: function () {
+        this.list.cards().add(this.model);
         this.$el.empty();
         this.remove();
       }.bind(this)
     })
+  },
+
+  cancelCard: function (event) {
+    this.$el.empty();
+    this.remove();
+    this.list.fetch();
   }
 
 })

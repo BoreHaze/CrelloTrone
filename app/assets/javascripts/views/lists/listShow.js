@@ -7,27 +7,30 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     "click .add-card-btn":"addCard"
   },
 
-  initialize: function (options) {
-    this.list = options.list;
-    this.listenTo(this.list, "sync add", this.render);
+  initialize: function () {
+    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model.cards(), "sync add", this.render);
   },
 
   render: function () {
-    this.$el.html(this.template({ list: this.list }));
-    var cards = this.list.cards()
+    this.$el.html(this.template({ list: this.model }));
+    var cards = this.model.cards()
     if(cards){
       cards.forEach( function (card) {
-        var cardShow = new TrelloClone.Views.CardShow({ card: card });
+        var cardShow = new TrelloClone.Views.CardShow({ model: card });
         this.addSubview(this.cardsSelector, cardShow);
       }.bind(this))
     }
+
+    TrelloClone.Helpers.initializeListSorting();
+
     return this;
   },
 
   addCard: function (event) {
     event.preventDefault();
-    var cardForm = new TrelloClone.Views.CardForm({list: this.list});
-    $(".buttons-container").empty();
+    var cardForm = new TrelloClone.Views.CardForm({list: this.model});
+    $(event.delegateTarget).find(".buttons-container").empty();
     this.addSubview(this.cardsSelector, cardForm);
   }
 

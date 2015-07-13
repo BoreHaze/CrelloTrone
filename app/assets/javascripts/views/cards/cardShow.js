@@ -1,14 +1,14 @@
 TrelloClone.Views.CardShow = Backbone.View.extend({
   template: JST["cards/cardShow"],
-  tagName: "li class='card-show'",
+  tagName: "li class='card-show card-draggable'",
 
-  initialize: function (options) {
-    this.card = options.card;
-    this.listenTo(this.card, "sync", this.render);
+  initialize: function () {
+    this.listenTo(this.model, "sync", this.render);
+    TrelloClone.Helpers.initializeCardSorting();
   },
 
   render: function () {
-    this.$el.html(this.template({ card: this.card }));
+    this.$el.html(this.template({ card: this.model }));
     return this;
   }
 

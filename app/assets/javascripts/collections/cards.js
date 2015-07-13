@@ -11,5 +11,8 @@ TrelloClone.Collections.Cards = Backbone.Collection.extend({
 
     card.fetch();
     return card;
-  }
+  },
+
+  tap : function () {}
+  
 })

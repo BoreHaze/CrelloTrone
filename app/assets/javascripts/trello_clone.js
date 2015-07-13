@@ -3,6 +3,7 @@ window.TrelloClone = {
   Collections: {},
   Views: {},
   Routers: {},
+  Helpers: {},
   initialize: function() {
     var boards = new TrelloClone.Collections.Boards();
     boards.fetch({
@@ -11,7 +12,7 @@ window.TrelloClone = {
           $rootEl: $('#main'),
           boards: boards
         });
-        
+
         Backbone.history.start();
       }
     })

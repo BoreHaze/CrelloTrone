@@ -28,6 +28,11 @@ module Api
       end
     end
 
+    def show
+      @list = List.find(params[:id])
+      render json: {}
+    end
+
     private
 
     def current_board

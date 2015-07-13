@@ -9,7 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery-ui
+ *= require jquery-ui/sortable
+ *= require jquery-ui/draggable
  *= require_tree .
  */
 //
@@ -22,6 +23,10 @@
 ul {
   list-style: none;
   padding: 0;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .navbar {
@@ -75,6 +80,7 @@ ul {
 
 .list-container {
   padding-left: 10px;
+  float: left;
 }
 
 .list-show{
@@ -90,8 +96,9 @@ ul {
   height: fit-content;
 }
 
-.card-container {
+.cards-container {
   padding: 0;
+  min-height: 18px;
 }
 
 .card-show{
@@ -169,4 +176,37 @@ ul {
 
 .cancel-card-btn:hover {
   color: #111;
+}
+
+.list-form-container.idle{
+  width: 275px;
+  display: block;
+  float: left;
+  margin: 5px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, .12);
+}
+
+.add-list-btn {
+  display: block;
+  height: 100%;
+  weidth: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, .7);
+  padding: 5px 7px;
+}
+
+.add-list-btn:hover {
+  color: rgba(255, 255, 255, .7);
+}
+
+.list-form-container.idle:hover {
+  background-color: rgba(0, 0, 0, .35);
+}
+
+.list-form {}
+
+.ui-sortable-helper {
+  transform: rotate(15deg);
 }
