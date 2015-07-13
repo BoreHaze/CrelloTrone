@@ -16,14 +16,15 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
   render: function () {
     this.$el.html(this.template({ board: this.model }));
     var lists = this.model.lists();
+    this.emptySelector(this.listsSelector);
     if (lists){
+      lists.sort();
       lists.forEach( function (list) {
-        var listShow = new TrelloClone.Views.ListShow({ model: list });
+        var listShow = new TrelloClone.Views.ListShow({ model: list, collection: this.model.lists() });
         this.addSubview(this.listsSelector, listShow);
       }.bind(this))
     }
 
-    // TrelloClone.Helpers.registerSorting();
     return this;
   },
 
@@ -34,18 +35,10 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     this.addSubview(this.listFormSelector, listForm);
   },
 
-  initializeListSorting: function () {
-    $(".list-sortable").sortable({
-      items: "> li.list-show"
-    })
-  },
-
-
-  initializeCardSorting: function () {
-    $(".cards-droppable").sortable({
-      connectWith: ".cards-droppable",
-      items: "> li.card-show"
-    })
+  sortIntercept: function (event) {
+    console.log("In sort intercept");
+    console.log(this.model.lists());
+    return this.render();
   }
 
 })

@@ -5,12 +5,12 @@ window.TrelloClone = {
   Routers: {},
   Helpers: {},
   initialize: function() {
-    var boards = new TrelloClone.Collections.Boards();
-    boards.fetch({
+    TrelloClone.boards = new TrelloClone.Collections.Boards();
+    TrelloClone.boards.fetch({
       success: function() {
         var router = new TrelloClone.Routers.Router({
           $rootEl: $('#main'),
-          boards: boards
+          boards: TrelloClone.boards
         });
 
         Backbone.history.start();
